@@ -186,7 +186,18 @@
             <h1>Hotel Simulator</h1>
             <p class="subtitle">Live Hotel Monitor. 9 rooms connected to the localized Oasis-Grid bio-filter grid.</p>
             
-            <button id="auto-btn" style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-family: 'Inter', sans-serif; cursor: pointer; transition: 0.3s; width: 100%; font-size: 16px;">Start Automatic AI</button>
+                <div style="margin-top: 16px;">
+                    <button id="auto-btn" style="background: rgba(0, 176, 255, 0.2); border: 1px solid rgba(0, 176, 255, 0.5); color: #00B0FF; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: all 0.3s; font-size: 16px;">
+                        Enable Automatic AI Behaviors
+                    </button>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <label style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: bold;">
+                        Hotel Population: <span id="pop-val" style="color: #00E676;">20</span>
+                    </label>
+                    <input type="range" id="pop-slider" min="1" max="100" value="20" style="width: 100%; margin-top: 8px;">
+                </div>
             <div style="height: 24px;"></div>
             
             <img src="bio_filter_diagram.png" alt="Bio Filter Exploded View" style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
