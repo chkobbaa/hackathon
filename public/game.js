@@ -429,7 +429,9 @@ function draw() {
 
 function loop() {
     update();
-    draw();
+    if (!document.hidden) {
+        draw();
+    }
 }
 
 // Use a Web Worker to bypass Chrome's background tab throttling
