@@ -141,14 +141,14 @@ class Room {
         // Particles
         this.particles.forEach(p => {
             const opacity = p.life;
-            ctx.fillStyle = \`rgba(56, 189, 248, \${opacity})\`;
+            ctx.fillStyle = `rgba(56, 189, 248, ${opacity})`;
             ctx.beginPath();
             ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
             ctx.fill();
         });
 
         this.showerParticles.forEach(p => {
-            ctx.fillStyle = \`rgba(56, 189, 248, \${p.life})\`;
+            ctx.fillStyle = `rgba(56, 189, 248, ${p.life})`;
             ctx.fillRect(p.x, p.y, 2, 6);
         });
     }
@@ -300,7 +300,7 @@ function updateReservoirs() {
     let activeReservoirIndex = Math.floor(totalFilteredWater / reservoirCapacity);
     
     for(let i=0; i<6; i++) {
-        const res = document.getElementById(\`reservoir-\${i}\`);
+        const res = document.getElementById(`reservoir-${i}`);
         if (!res) continue;
         res.classList.add('visible');
         
@@ -311,9 +311,9 @@ function updateReservoirs() {
             fillPercentage = ((totalFilteredWater % reservoirCapacity) / reservoirCapacity) * 100;
         }
         
-        const waterLvl = document.getElementById(\`water-level-\${i}\`);
+        const waterLvl = document.getElementById(`water-level-${i}`);
         if (waterLvl) {
-            waterLvl.style.height = \`\${fillPercentage}%\`;
+            waterLvl.style.height = `${fillPercentage}%`;
         }
     }
 }
@@ -331,7 +331,7 @@ function draw() {
     
     ctx.fillStyle = "rgba(255,255,255,0.8)";
     ctx.font = "16px Inter";
-    ctx.fillText(\`Simulating \${serverState.population} guests across the hotel network\`, 10, canvas.height - 10);
+    ctx.fillText(`Simulating ${serverState.population} guests across the hotel network`, 10, canvas.height - 10);
 }
 
 function loop() {
@@ -341,14 +341,14 @@ function loop() {
     }
 }
 
-const workerCode = \`
+const workerCode = `
   let interval;
   self.onmessage = function(e) {
     if (e.data === 'start') {
       interval = setInterval(() => self.postMessage('tick'), 16); 
     }
   };
-\`;
+`;
 const blob = new Blob([workerCode], {type: 'application/javascript'});
 const worker = new Worker(URL.createObjectURL(blob));
 
