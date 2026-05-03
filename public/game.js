@@ -430,7 +430,23 @@ function draw() {
 function loop() {
     update();
     draw();
-    requestAnimationFrame(loop);
 }
 
-loop();
+// Use a Web Worker to bypass Chrome's background tab throttling
+// requestAnimationFrame pauses when the tab is hidden, but Web Workers do not.
+const workerCode = `
+  let interval;
+  self.onmessage = function(e) {
+    if (e.data === 'start') {
+      interval = setInterval(() => self.postMessage('tick'), 16); // ~60fps
+    }
+  };
+`;
+const blob = new Blob([workerCode], {type: 'application/javascript'});
+const worker = new Worker(URL.createObjectURL(blob));
+
+worker.onmessage = () => {
+    loop();
+};
+
+worker.postMessage('start');
